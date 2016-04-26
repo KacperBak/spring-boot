@@ -1,5 +1,6 @@
 package de.kacperbak;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,14 +14,14 @@ import java.util.Date;
  */
 @RestController
 @RequestMapping("/hello")
-public class HelloWorldController {
+public class HelloController {
 
-    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd 'at' HH:mm:ss");
+    @Autowired
+    private Hello hello;
 
     @RequestMapping(method= RequestMethod.GET)
-    public String sayHello() {
-        String messageTemplate = "Hello world in time: %s";
-        return String.format(messageTemplate, sdf.format(new Date()));
+    public String hello() {
+        return hello.toString();
     }
 
 }
